@@ -56,7 +56,39 @@ object ArrayManager {
 			}
 		}
 		val end = System.currentTimeMillis()
-		
+
 		Utils.displaySortDetails("Inserted sort", array.size, end - start)
+	}
+
+	fun shellSort(array: Array<Int>) {
+		val start = System.currentTimeMillis()
+
+		var gap = array.size / 2
+		var j: Int
+		var temp: Int
+
+		while (gap > 0) {
+
+			var i = gap
+
+			while (i < array.size) {
+				temp = array[i]
+
+				j = i
+
+				while (j >= gap && array[j - gap] > temp) {
+					array[j] = array[j - gap]
+					j -= gap
+				}
+
+				array[j] = temp
+				i += 1
+			}
+			gap /= 2
+		}
+		
+		val end = System.currentTimeMillis()
+		Utils.displaySortDetails("Inserted sort", array.size, end - start)
+
 	}
 }
