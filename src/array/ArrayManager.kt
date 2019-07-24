@@ -86,9 +86,47 @@ object ArrayManager {
 			}
 			gap /= 2
 		}
-		
+
 		val end = System.currentTimeMillis()
-		Utils.displaySortDetails("Inserted sort", array.size, end - start)
+		Utils.displaySortDetails("Shell sort", array.size, end - start)
+
+	}
+	
+	fun mergeSort(array: Array<Int>, start: Int, end: Int){
+		val s = System.currentTimeMillis()
+		mergeSortImpl(array, start, end)
+		val end = System.currentTimeMillis()
+		Utils.displaySortDetails("Merge sort", array.size, end - s)
+	}
+
+	fun mergeSortImpl(arr: Array<Int>, start: Int, end: Int) {
+
+		if (end - start < 2) return
+
+		val mid = (start + end) / 2
+
+		mergeSortImpl(arr, start, mid)
+		mergeSortImpl(arr, mid, end)
+		merge(arr, start, mid, end)
+	}
+
+	private fun merge(arr: Array<Int>, start: Int, mid: Int, end: Int) {
+
+		if (arr[mid - 1] <= arr[mid]) return
+
+		var i = start
+		var j = mid
+		var tempIndex = 0
+
+		var tempArray = Array<Int>(end - start, {i -> i})
+		
+
+		while (i < mid && j < end) {
+			tempArray[tempIndex++] = if (arr[i] <= arr[j]) arr[i++] else arr[j++]
+		}
+
+		System.arraycopy(arr, i, arr, start + tempIndex, mid - i)
+		System.arraycopy(tempArray, 0, arr, start, tempIndex)
 
 	}
 }
