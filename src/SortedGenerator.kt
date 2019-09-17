@@ -1,3 +1,5 @@
+import hashtable.Person
+import hashtable.SimplePersonHashTable
 import list.doubleLinkedList.Car
 import list.doubleLinkedList.CarDoubleLinkedList
 import list.singleLinkedList.Worker
@@ -13,8 +15,7 @@ fun main() {
 ////	countSort(tempArray)
 
 //	runSingleWorkerLinkedList()
-	runDoubleCarLinkedList()
-
+//	runDoubleCarLinkedList()
 
 }
 
